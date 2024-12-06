@@ -17,3 +17,25 @@ def time_page(request):
         'current_time': now.strftime('%H:%M:%S'),
     }
     return render(request, 'time.html', context)
+
+
+def calc_page(request):
+    a = request.GET.get('a', 0)
+    b = request.GET.get('b', 0)
+
+    try:
+        a = int(a)
+        b = int(b)
+    except ValueError:
+        a = 0
+        b = 0
+
+    result = a + b
+
+    context = {
+        'course_name': 'Курс "Промышленное программирование"',
+        'first_number': a,
+        'second_number': b,
+        'sum_result': result,
+    }
+    return render(request, 'calc.html', context)
